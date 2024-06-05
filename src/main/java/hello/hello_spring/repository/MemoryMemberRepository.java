@@ -6,11 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.stereotype.Repository;
-
 import hello.hello_spring.domain.Member;
 
-@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
@@ -21,11 +18,6 @@ public class MemoryMemberRepository implements MemberRepository {
         member.setId(++sequence);
         store.put(member.getId(), member);
         return member;
-    }
-
-    @Override
-    public List<Member> findAll() {
-        return new ArrayList<>(store.values());
     }
 
     @Override
@@ -40,7 +32,12 @@ public class MemoryMemberRepository implements MemberRepository {
                 .findAny();
     }
 
-    public void clearStore(){
+    @Override
+    public List<Member> findAll() {
+        return new ArrayList<>(store.values());
+    }
+
+    public void clearStore() {
         store.clear();
     }
 }

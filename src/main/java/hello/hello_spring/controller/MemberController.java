@@ -12,8 +12,6 @@ import hello.hello_spring.domain.Member;
 import hello.hello_spring.service.MemberService;
 
 
-
-
 @Controller
 public class MemberController {
 
